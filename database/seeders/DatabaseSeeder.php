@@ -22,6 +22,13 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RolePermissionSeeder::class,
             UserSeeder::class,
+            ContactFromLandingSeeder::class,
+            TourGuideSeeder::class,
+            TourSeeder::class,
+            MeetingPointSeeder::class,
+            TourScheduleSeeder::class,
+            TourImageSeeder::class,
+            DestinationSeeder::class,
         ]);
     }
 }
