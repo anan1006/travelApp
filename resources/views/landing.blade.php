@@ -98,7 +98,7 @@
                                     of
                                     Yogyakarta, Indonesia</p>
                                 {{-- <button class="button">View more...</button> --}}
-                                <p><a class="link-detail" href="#">Browse gallery</a></p>
+                                {{-- <p><a class="link-detail" href="#">Browse gallery</a></p> --}}
                             </div>
                         </div>
                     </div>
@@ -158,42 +158,17 @@
                 <div class="discover__container max-w-lg swiper-container" data-aos="zoom-out"
                     data-aos-duration="1500">
                     <div class="swiper-wrapper">
-                        <div class="discover__card swiper-slide">
-                            {{-- Konten1 --}}
-                            <img src="{{ asset('img\landing\discover1.png') }}" alt=""
-                                class="discover__img">
-                            <div class="discover__data">
-                                <h2 class="discover__title text-white">Situ Gunung Suspension Bridge</h2>
-                                <span class="discover__description text-white">Sukabumi Regency, West Java</span>
+                        @foreach ($discovers as $discover)
+                            <div class="discover__card swiper-slide">
+                                <img src="{{ asset('storage/' . $discover->discover_image) }}" alt=""
+                                    class="discover__img">
+                                <div class="discover__data">
+                                    <h2 class="discover__title text-white">{{ $discover->discover_title }}</h2>
+                                    <span
+                                        class="discover__description text-white">{{ $discover->discover_location }}</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="discover__card swiper-slide">
-                            {{-- Konten1 --}}
-                            <img src="{{ asset('img\landing\discover2.png') }}" alt=""
-                                class="discover__img">
-                            <div class="discover__data">
-                                <h2 class="discover__title text-white">Komodo Island</h2>
-                                <span class="discover__description text-white">Indonesia</span>
-                            </div>
-                        </div>
-                        <div class="discover__card swiper-slide">
-                            {{-- Konten1 --}}
-                            <img src="{{ asset('img\landing\discover3.png') }}" alt=""
-                                class="discover__img">
-                            <div class="discover__data">
-                                <h2 class="discover__title text-white">Bromo Tengger Semeru</h2>
-                                <span class="discover__description text-white">Pasuruan Regency, East Java</span>
-                            </div>
-                        </div>
-                        <div class="discover__card swiper-slide">
-                            {{-- Konten1 --}}
-                            <img src="{{ asset('img\landing\discover4.png') }}" alt=""
-                                class="discover__img">
-                            <div class="discover__data">
-                                <h2 class="discover__title text-white">Merapi Park</h2>
-                                <span class="discover__description text-white">Kaliurang Yogyakarta</span>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
 
                 </div>
@@ -264,91 +239,29 @@
                     Our Plan Journey</h1>
                 <div class="row row-cols-1 row-cols-md-3 mb-3 mt-5 text-center" data-aos="fade-up"
                     data-aos-duration="1000">
-                    <div class="col">
-                        <div class="card mb-4 rounded-3 shadow-sm">
-                            <div class="plan-card" style="background-color: aqua">
-                                <div class="card border-0 rounded-0 text-bg-dark">
-                                    <img src="{{ asset('img/landing/hero1.jpg') }}" class="card-img" alt="...">
-                                    <div class="card-img-overlay d-flex align-items-end">
-                                        <div class="text-start">
-                                            <h2 class="card-title">Bromo</h2>
-                                            <h6 class="card-text text-white">Pasuruan Jawa Timur</h6>
-                                            <p class="card-text">Rp. 350k/pax</p>
-                                            <a href="" class="link-detail">View Detail</a>
+                    @foreach ($tours as $tour)
+                        <div class="col">
+                            <div class="card mb-4 rounded-3 shadow-sm">
+                                <div class="plan-card" style="background-color: aqua">
+                                    <div class="card border-0 rounded-0 text-bg-dark">
+                                        <img src="{{ asset('storage/' . $tour->banner_path) }}" class="card-img"
+                                            alt="...">
+                                        <div class="card-img-overlay d-flex align-items-end">
+                                            <div class="text-start">
+                                                <h2 class="card-title text-capitalize">{{ $tour->title }}</h2>
+                                                <h6 class="card-text text-white text-capitalize">{{ $tour->location }}
+                                                </h6>
+                                                <p class="card-text">Rp.
+                                                    {{ number_format($tour->price, 0, ',', '.') }}/pax</p>
+                                                <a href="{{ route('showPlan', $tour->tour_id) }}"
+                                                    class="link-detail">View Detail</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="card mb-4 rounded-3 shadow-sm">
-                            <div class="plan-card" style="background-color: aqua">
-                                <div class="card border-0 rounded-0 text-bg-dark">
-                                    <img src="{{ asset('img/landing/hero1.jpg') }}" class="card-img" alt="...">
-                                    <div class="card-img-overlay d-flex align-items-end">
-                                        <div class="text-start">
-                                            <h2 class="card-title">Bromo</h2>
-                                            <h6 class="card-text text-white">Pasuruan Jawa Timur</h6>
-                                            <p class="card-text">Rp. 350k/pax</p>
-                                            <a href="" class="link-detail">View Detail</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card mb-4 rounded-3 shadow-sm">
-                            <div class="plan-card" style="background-color: aqua">
-                                <div class="card border-0 rounded-0 text-bg-dark">
-                                    <img src="{{ asset('img/landing/hero1.jpg') }}" class="card-img" alt="...">
-                                    <div class="card-img-overlay d-flex align-items-end">
-                                        <div class="text-start">
-                                            <h2 class="card-title">Bromo</h2>
-                                            <h6 class="card-text text-white">Pasuruan Jawa Timur</h6>
-                                            <p class="card-text">Rp. 350k/pax</p>
-                                            <a href="" class="link-detail">View Detail</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card mb-4 rounded-3 shadow-sm">
-                            <div class="plan-card" style="background-color: aqua">
-                                <div class="card border-0 rounded-0 text-bg-dark">
-                                    <img src="{{ asset('img/landing/hero1.jpg') }}" class="card-img" alt="...">
-                                    <div class="card-img-overlay d-flex align-items-end">
-                                        <div class="text-start">
-                                            <h2 class="card-title">Bromo</h2>
-                                            <h6 class="card-text text-white">Pasuruan Jawa Timur</h6>
-                                            <p class="card-text">Rp. 350k/pax</p>
-                                            <a href="" class="link-detail">View Detail</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card mb-4 rounded-3 shadow-sm">
-                            <div class="plan-card" style="background-color: aqua">
-                                <div class="card border-0 rounded-0 text-bg-dark">
-                                    <img src="{{ asset('img/landing/hero1.jpg') }}" class="card-img" alt="...">
-                                    <div class="card-img-overlay d-flex align-items-end">
-                                        <div class="text-start">
-                                            <h2 class="card-title">Bromo</h2>
-                                            <h6 class="card-text text-white">Pasuruan Jawa Timur</h6>
-                                            <p class="card-text">Rp. 350k/pax</p>
-                                            <a href="" class="link-detail">View Detail</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
 
                 </div>
 

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->uuid("review_id")->primary();
-            $table->foreignId("user_id")->constrained("users");
+            $table->foreignUuid("user_id")->constrained("users");
             $table->foreignUuid("tour_id")->constrained("tours")->references("tour_id");
             $table->text("review");
             $table->timestamps();

@@ -3,8 +3,8 @@
     <!-- Sidebar scroll-->
     <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-            <a href="/dashboard" class="text-nowrap logo-img">
-                <img src="{{ asset('img/logo.png') }}" width="180" alt="" />
+            <a href="/dashboard" class="text-nowrap logo-img mx-auto mt-3">
+                <img src="{{ asset('img/logodark.png') }}" width="100" alt="" />
             </a>
             <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                 <i class="ti ti-x fs-8"></i>
@@ -33,90 +33,53 @@
                         <span class="hide-menu">Landing Page</span>
                     </a>
                 </li>
-                {{-- <li class="nav-small-cap">
-                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">UI COMPONENTS</span>
-                </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
+                    <a class="sidebar-link {{ Request::is('discover/*') ? 'active' : '' }}" href="/discover"
+                        aria-expanded="false">
                         <span>
-                            <i class="ti ti-article"></i>
+                            <i class="ti ti-compass"></i>
                         </span>
-                        <span class="hide-menu">Buttons</span>
+                        <span class="hide-menu">Discover</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-alert-circle"></i>
-                        </span>
-                        <span class="hide-menu">Alerts</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-cards"></i>
-                        </span>
-                        <span class="hide-menu">Card</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="./ui-forms.html" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-file-description"></i>
-                        </span>
-                        <span class="hide-menu">Forms</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-typography"></i>
-                        </span>
-                        <span class="hide-menu">Typography</span>
-                    </a>
-                </li>
+                {{-- Tour Menu --}}
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">AUTH</span>
+                    <span class="hide-menu">Tour</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+                    <a class="sidebar-link {{ Request::is('rencana-tour/*') ? 'active' : '' }}"
+                        href="{{ route('tourPlan') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-login"></i>
+                            <i class="ti ti-list-details"></i>
                         </span>
-                        <span class="hide-menu">Login</span>
+                        <span class="hide-menu">Kelola Rencana Tour</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
+                    <a class="sidebar-link {{ Request::is('daftar-rencana-tour/*') ? 'active' : '' }}"
+                        href="{{ route('rencanaTourList') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-user-plus"></i>
+                            <i class="ti ti-mountain"></i>
                         </span>
-                        <span class="hide-menu">Register</span>
+                        <span class="hide-menu">Daftar Rencana Tour</span>
                     </a>
                 </li>
+                {{-- User Menu --}}
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">EXTRA</span>
+                    <span class="hide-menu">Users</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="./icon-tabler.html" aria-expanded="false">
+                    <a class="sidebar-link {{ Request::is('user-list/*') ? 'active' : '' }}"
+                        href="{{ route('userList') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-mood-happy"></i>
+                            <i class="ti ti-user-circle"></i>
                         </span>
-                        <span class="hide-menu">Icons</span>
+                        <span class="hide-menu">Kelola User</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-aperture"></i>
-                        </span>
-                        <span class="hide-menu">Sample Page</span>
-                    </a>
-                </li> --}}
+
             </ul>
 
         </nav>

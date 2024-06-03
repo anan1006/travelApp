@@ -9,12 +9,13 @@ use App\Models\TourImage;
 use App\Models\Destination;
 use App\Models\MeetingPoint;
 use App\Models\TourSchedule;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Tour extends Model
 {
-    use HasFactory, HasUuid;
+    use HasFactory, HasUuids;
     protected $primaryKey = "tour_id";
     protected $guarded = "tour_id";
     protected $foreignKey = "tour_guide_id";

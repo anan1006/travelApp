@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tour_schedules', function (Blueprint $table) {
             $table->uuid('tour_schedule_id')->primary();
-            $table->foreignUuid('tour_id')->constrained('tours')->references('tour_id');
+            $table->foreignUuid('tour_id')->constrained('tours')->references('tour_id')->onUpdate('cascade')->onDelete('cascade');
             $table->string('activity');
             $table->dateTime('schedule_time');
             $table->timestamps();

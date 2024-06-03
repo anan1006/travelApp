@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             TourScheduleSeeder::class,
             TourImageSeeder::class,
             DestinationSeeder::class,
+            DiscoverSeeder::class,
         ]);
     }
 }

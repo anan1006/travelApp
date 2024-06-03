@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('destinations', function (Blueprint $table) {
             $table->uuid("destination_id");
             $table->string("destination_name");
-            $table->foreignUuid("tour_id")->constrained("tours")->references("tour_id");
+            $table->foreignUuid("tour_id")->constrained("tours")->references("tour_id")->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

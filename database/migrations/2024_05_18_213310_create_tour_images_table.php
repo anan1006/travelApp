@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tour_images', function (Blueprint $table) {
             $table->uuid("tour_image_id")->primary();
-            $table->foreignUuid("tour_id")->constrained("tours")->references("tour_id");
+            $table->foreignUuid("tour_id")->constrained("tours")->references("tour_id")->onUpdate('cascade')->onDelete('cascade');
             $table->text("image_url");
             $table->timestamps();
         });
