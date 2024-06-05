@@ -34,6 +34,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/rencana-tour/detil/{plan}', [TourController::class, 'show'])->name('showPlan');
     Route::get('/rencana-tour/edit/{plan}', [TourController::class, 'edit'])->name('editPlan');
     Route::post('/rencana-tour/update/{plan}', [TourController::class, 'update'])->name('updatePlan');
+    Route::get('/rencana-tour/delete/{plan}', [TourController::class, 'destroy'])->name('deletePlan');
 
 
     // Hapus Meeting Point

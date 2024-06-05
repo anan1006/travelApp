@@ -12,6 +12,7 @@ use App\Models\Destination;
 use App\Models\MeetingPoint;
 use App\Models\TourSchedule;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class TourController extends Controller
 {
@@ -149,6 +150,12 @@ class TourController extends Controller
             $plan->duration = $start_date->diffInDays($end_date);
             $plan->location = $validated['location'];
             $plan->updated_at = now();
+
+            if ($request->file("image")) {
+                Storage::delete($plan->banner_path);
+                $plan->banner_path = $request->file("image")->store("bannerIMG","public");
+            }
+
             $plan->save();
 
             $updatedMP[] = $request->meeting_point_name_update;
@@ -213,6 +220,14 @@ class TourController extends Controller
         }
     }
 
+    public function destroy(Tour $plan){
+        try {
+            $plan->delete();
+            return redirect()->route("tourPlan")->with('success', 'Data berhasil dihapus!');
+        } catch (\Throwable $th) {
+            return redirect()->route("tourPlan")->with('error', 'Data gagal dihapus!');
+        }
+    }
 
 
 

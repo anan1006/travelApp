@@ -28,7 +28,7 @@
                     </div>
                     <div class="row">
                         <p class="text-center">
-                            Apakah yakin akan menghapus data {{ $user->name }}?
+                            Apakah yakin akan menghapus data <strong>"{{ $user->name }}"</strong>?
                         </p>
                     </div>
                 </div>

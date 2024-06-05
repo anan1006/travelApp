@@ -37,7 +37,9 @@ class TourDataTable extends DataTable
             ->editColumn('end_date',function(Tour $var){
                 return Carbon::parse($var->end_date)->format('d F Y');
             })
-            ->addColumn('action', 'admin.tour.action')
+            ->addColumn('action', function(Tour $tour){
+                return view('admin.tour.action',compact('tour'));
+            })
             ->setRowId('tour_id');
     }
 
