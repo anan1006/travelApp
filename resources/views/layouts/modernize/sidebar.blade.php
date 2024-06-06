@@ -33,29 +33,33 @@
                         <span class="hide-menu">Landing Page</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link {{ Request::is('discover/*') ? 'active' : '' }}" href="/discover"
-                        aria-expanded="false">
-                        <span>
-                            <i class="ti ti-compass"></i>
-                        </span>
-                        <span class="hide-menu">Discover</span>
-                    </a>
-                </li>
+                @if (!auth()->user()->hasRole('user'))
+                    <li class="sidebar-item">
+                        <a class="sidebar-link {{ Request::is('discover/*') ? 'active' : '' }}" href="/discover"
+                            aria-expanded="false">
+                            <span>
+                                <i class="ti ti-compass"></i>
+                            </span>
+                            <span class="hide-menu">Discover</span>
+                        </a>
+                    </li>
+                @endif
                 {{-- Tour Menu --}}
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">Tour</span>
                 </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link {{ Request::is('rencana-tour/*') ? 'active' : '' }}"
-                        href="{{ route('tourPlan') }}" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-list-details"></i>
-                        </span>
-                        <span class="hide-menu">Kelola Rencana Tour</span>
-                    </a>
-                </li>
+                @if (!auth()->user()->hasRole('user'))
+                    <li class="sidebar-item">
+                        <a class="sidebar-link {{ Request::is('rencana-tour/*') ? 'active' : '' }}"
+                            href="{{ route('tourPlan') }}" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-list-details"></i>
+                            </span>
+                            <span class="hide-menu">Kelola Rencana Tour</span>
+                        </a>
+                    </li>
+                @endif
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ Request::is('daftar-rencana-tour/*') ? 'active' : '' }}"
                         href="{{ route('rencanaTourList') }}" aria-expanded="false">
@@ -66,19 +70,21 @@
                     </a>
                 </li>
                 {{-- User Menu --}}
-                <li class="nav-small-cap">
-                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">Users</span>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link {{ Request::is('user-list/*') ? 'active' : '' }}"
-                        href="{{ route('userList') }}" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-user-circle"></i>
-                        </span>
-                        <span class="hide-menu">Kelola User</span>
-                    </a>
-                </li>
+                @if (!auth()->user()->hasRole('user'))
+                    <li class="nav-small-cap">
+                        <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                        <span class="hide-menu">Users</span>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link {{ Request::is('user-list/*') ? 'active' : '' }}"
+                            href="{{ route('userList') }}" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-user-circle"></i>
+                            </span>
+                            <span class="hide-menu">Kelola User</span>
+                        </a>
+                    </li>
+                @endif
 
             </ul>
 

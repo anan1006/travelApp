@@ -29,7 +29,8 @@
                     </div>
                     <div class="row">
                         <p class="text-center">
-                            Apakah yakin akan menghapus rencana <strong>"{{ $tour->title }}"</strong>?
+                            Apakah yakin akan menghapus rencana <strong
+                                class="text-capitalize">"{{ $tour->title }}"</strong>?
                         </p>
                     </div>
                 </div>

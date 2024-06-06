@@ -28,7 +28,8 @@
                     </div>
                     <div class="row">
                         <p class="text-center">
-                            Apakah yakin akan menghapus data <strong>"{{ $user->name }}"</strong>?
+                            Apakah yakin akan menghapus data <strong
+                                class="text-capitalize">"{{ $user->name }}"</strong>?
                         </p>
                     </div>
                 </div>

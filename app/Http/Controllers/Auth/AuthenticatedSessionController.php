@@ -29,6 +29,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if (Auth::user()->hasRole("user")) {
+            return redirect()->route("rencanaTourList");
+        }
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

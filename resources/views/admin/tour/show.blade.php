@@ -82,7 +82,9 @@
                                     <tr>
                                         <th scope="col" width="50px">No</th>
                                         <th scope="col">Meeting Point</th>
-                                        <th scope="col">Aksi</th>
+                                        @if (!auth()->user()->hasRole('user'))
+                                            <th scope="col">Aksi</th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -90,15 +92,17 @@
                                         <tr>
                                             <th scope="row">{{ $key + 1 }}</th>
                                             <td class="text-capitalize">{{ $mp->meeting_point_name }}</td>
-                                            <td>
-                                                <form action="{{ route('hapusMeetingPoint', $mp->meeting_point_id) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button class="btn btn-sm btn-danger" type="submit"><i
-                                                            class="ti ti-trash fs-5"></i>Hapus</button>
-                                                </form>
-                                            </td>
+                                            @if (!auth()->user()->hasRole('user'))
+                                                <td>
+                                                    <form action="{{ route('hapusMeetingPoint', $mp->meeting_point_id) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button class="btn btn-sm btn-danger" type="submit"><i
+                                                                class="ti ti-trash fs-5"></i>Hapus</button>
+                                                    </form>
+                                                </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -113,7 +117,9 @@
                                     <tr>
                                         <th scope="col" width="50px">No</th>
                                         <th scope="col">Destination</th>
-                                        <th scope="col">Aksi</th>
+                                        @if (!auth()->user()->hasRole('user'))
+                                            <th scope="col">Aksi</th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -121,15 +127,17 @@
                                         <tr>
                                             <th scope="row">{{ $key + 1 }}</th>
                                             <td class="text-capitalize">{{ $d->destination_name }}</td>
-                                            <td>
-                                                <form action="{{ route('hapusDestination', $d->destination_id) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button class="btn btn-sm btn-danger" type="submit"><i
-                                                            class="ti ti-trash fs-5"></i>Hapus</button>
-                                                </form>
-                                            </td>
+                                            @if (!auth()->user()->hasRole('user'))
+                                                <td>
+                                                    <form action="{{ route('hapusDestination', $d->destination_id) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button class="btn btn-sm btn-danger" type="submit"><i
+                                                                class="ti ti-trash fs-5"></i>Hapus</button>
+                                                    </form>
+                                                </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -146,7 +154,9 @@
                                         <th scope="col">Aktivitas</th>
                                         <th scope="col">Jam</th>
                                         <th scope="col">Tanggal</th>
-                                        <th scope="col">Aksi</th>
+                                        @if (!auth()->user()->hasRole('user'))
+                                            <th scope="col">Aksi</th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -156,15 +166,17 @@
                                             <td class="text-capitalize">{{ $s->activity }}</td>
                                             <td>{{ \Carbon\Carbon::parse($s->schedule_time)->format('H:i') }}</td>
                                             <td>{{ \Carbon\Carbon::parse($s->schedule_time)->format('d M Y') }}</td>
-                                            <td>
-                                                <form action="{{ route('hapusSchedule', $s->tour_schedule_id) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button class="btn btn-sm btn-danger" type="submit"><i
-                                                            class="ti ti-trash fs-5"></i>Hapus</button>
-                                                </form>
-                                            </td>
+                                            @if (!auth()->user()->hasRole('user'))
+                                                <td>
+                                                    <form action="{{ route('hapusSchedule', $s->tour_schedule_id) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button class="btn btn-sm btn-danger" type="submit"><i
+                                                                class="ti ti-trash fs-5"></i>Hapus</button>
+                                                    </form>
+                                                </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -176,11 +188,17 @@
             <br>
             <br>
 
-            <div class="d-flex justify-content-end gap-2">
-                <a href="{{ route('editPlan', $plan->tour_id) }}" class="btn btn-primary">Edit Rencana</a>
-                <a href="{{ route('tourPlan') }}" class="btn btn-danger">Kembali</a>
-
-            </div>
+            @if (!auth()->user()->hasRole('user'))
+                <div class="d-flex justify-content-end gap-2">
+                    <a href="{{ route('editPlan', $plan->tour_id) }}" class="btn btn-primary">Edit Rencana</a>
+                    <a href="{{ route('tourPlan') }}" class="btn btn-danger">Kembali</a>
+                </div>
+            @else
+                <div class="d-flex justify-content-end gap-2">
+                    <a href="{{ route('editPlan', $plan->tour_id) }}" class="btn btn-primary">Daftar</a>
+                    <a href="{{ route('rencanaTourList') }}" class="btn btn-danger">Kembali</a>
+                </div>
+            @endif
         </div>
     </div>
 @endsection

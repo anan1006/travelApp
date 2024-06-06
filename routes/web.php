@@ -26,12 +26,12 @@ Route::get('/', function () {
 });
 
 // Tour
-Route::middleware(['auth', 'verified'])->group(function(){
+Route::middleware(['auth', 'verified','role:superadmin|admin'])->group(function(){
     // Kelola Tour
     Route::get('/rencana-tour', [TourController::class, 'index'])->name('tourPlan');
     Route::get('/rencana-tour/tambah', [TourController::class, 'create'])->name('createPlan');
     Route::post('/rencana-tour/tambah', [TourController::class, 'store'])->name('storePlan');
-    Route::get('/rencana-tour/detil/{plan}', [TourController::class, 'show'])->name('showPlan');
+    // Route::get('/rencana-tour/detil/{plan}', [TourController::class, 'show'])->name('showPlan');
     Route::get('/rencana-tour/edit/{plan}', [TourController::class, 'edit'])->name('editPlan');
     Route::post('/rencana-tour/update/{plan}', [TourController::class, 'update'])->name('updatePlan');
     Route::get('/rencana-tour/delete/{plan}', [TourController::class, 'destroy'])->name('deletePlan');
@@ -44,8 +44,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     // Hapus Schedule
     Route::delete('/hapusSchedule/{schedule}', [TourController::class, 'hapusSchedule'])->name('hapusSchedule');
 
-    // DAFTAR TOUR
-    Route::get('/daftar-rencana-tour', [TourController::class, 'rencanaTourList'])->name('rencanaTourList');
+
 
     // User
     Route::get('/user-list', [UserController::class, 'index'])->name('userList');
@@ -63,9 +62,9 @@ Route::middleware(['auth', 'verified'])->group(function(){
 
 
 
-Route::get('/dashboard', function(){
-    return view('layouts.modernize.main');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function(){
+//     return view('layouts.modernize.main');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -73,10 +72,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/Tambah-Plan', function(){
-        return("TAMBAH PLAN");
-    })->name('tambah-plan');
+Route::middleware(['auth', 'verified','role:superadmin|admin|user'])->group(function () {
+    Route::get('/dashboard', function(){
+        return view('layouts.modernize.main');
+    })->name('dashboard');
+    // DAFTAR TOUR
+    Route::get('/daftar-rencana-tour', [TourController::class, 'rencanaTourList'])->name('rencanaTourList');
+
+    Route::get('/rencana-tour/detil/{plan}', [TourController::class, 'show'])->name('showPlan');
+
+
 });
 
 

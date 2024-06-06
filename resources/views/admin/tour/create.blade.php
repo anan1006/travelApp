@@ -17,174 +17,162 @@
         <div class="card-body">
 
             <form action="{{ route('storePlan') }}" method="post" enctype="multipart/form-data">
-                <div class="my-3">
-                    <h3 class=""><b>Informasi Tour</b></h3>
-                    <small class="">Masukkan informasi umum terkait tour</small>
+                <div class="card">
+                    <div class="card-body shadow">
+
+                        <div class="my-3">
+                            <h3 class=""><b>Informasi Tour</b></h3>
+                            <small class="">Masukkan informasi umum terkait tour</small>
+                        </div>
+
+                        @csrf
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Judul</label>
+                            <input type="text" class="form-control @error('title') is-invalid @enderror" name="title"
+                                id="title" value="{{ old('title') }}" placeholder="Kawah Ijen trip">
+                            @error('title')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Lokasi Tour</label>
+                            <input type="text" class="form-control @error('location') is-invalid @enderror"
+                                name="location" id="location" value="{{ old('location') }}"
+                                placeholder="Pasuruan Jawa Timur">
+                            @error('location')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="max_participant" class="form-label">Maksimal Peserta</label>
+                            <input type="number" class="form-control @error('max_participant') is-invalid @enderror"
+                                name="max_participant" id="max_participant" value="{{ old('max_participant') }}"
+                                placeholder="30">
+                            @error('max_participant')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Harga</label>
+                            <input type="number" class="form-control @error('price') is-invalid @enderror" name="price"
+                                id="price" value="{{ old('price') }}" placeholder="300000">
+                            @error('price')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="my-3">
+                            <label for="tour_guide_id" class="form-label">Tour Guide</label>
+                            <select class="form-select" aria-label="tour_guide_id" id="tour_guide_id" name="tour_guide_id">
+                                <option value="" selected disabled hidden>Pilih tour guide...</option>
+                                @foreach ($tourGuide as $tg)
+                                    <option value="{{ $tg->tour_guide_id }}">{{ $tg->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Gambar Tour</label>
+                            <img class="img-preview mb-3 d-block"
+                                style="max-width: 400px;max-height: 300px;object-fit: contain">
+                            <input class="form-control @error('image') is-invalid @enderror" name="image" type="file"
+                                id="image" onchange="previewImg()">
+                            @error('image')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="start_date" class="form-label">Tanggal Keberangkatan</label>
+                            <input type="date" class="form-control @error('start_date') is-invalid @enderror"
+                                name="start_date" id="start_date" value="{{ old('start_date') }}">
+                            @error('start_date')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="end_date" class="form-label">Tanggal Kembali</label>
+                            <input type="date" class="form-control @error('end_date') is-invalid @enderror"
+                                name="end_date" id="end_date" value="{{ old('end_date') }}">
+                            @error('end_date')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Deskripsi</label>
+                            <input id="description" type="hidden" name="description">
+                            <trix-editor input="description"></trix-editor>
+                        </div>
+                    </div>
                 </div>
 
-                @csrf
-                <div class="mb-3">
-                    <label for="title" class="form-label">Judul</label>
-                    <input type="text" class="form-control @error('title') is-invalid @enderror" name="title"
-                        id="title" value="{{ old('title') }}" placeholder="Kawah Ijen trip">
-                    @error('title')
-                        <div class="invalid-feedback">
-                            {{ $message }}
+                <div class="card">
+                    <div class="card-body shadow">
+
+                        {{-- MEETING POIN --}}
+                        <div class="mt-5 mb-3">
+                            <h3 class=""><b>Informasi Meeting Point</b></h3>
+                            <small>Masukkan informasi terkait meeting poin</small>
                         </div>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label for="location" class="form-label">Lokasi Tour</label>
-                    <input type="text" class="form-control @error('location') is-invalid @enderror" name="location"
-                        id="location" value="{{ old('location') }}" placeholder="Pasuruan Jawa Timur">
-                    @error('location')
-                        <div class="invalid-feedback">
-                            {{ $message }}
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-sm btn-dark" id="tambahMeetPoint">Tambah meeting
+                                point</button>
+                            <button type="button" class="btn btn-sm btn-danger" id="kurangMeetPoint">Kurangi meeting
+                                point</button>
                         </div>
-                    @enderror
+                        <div class="mb-3" id="meetingPoint-container"></div>
+                        {{-- MEETING POINT END --}}
+                    </div>
                 </div>
 
-                <div class="mb-3">
-                    <label for="max_participant" class="form-label">Maksimal Peserta</label>
-                    <input type="number" class="form-control @error('max_participant') is-invalid @enderror"
-                        name="max_participant" id="max_participant" value="{{ old('max_participant') }}" placeholder="30">
-                    @error('max_participant')
-                        <div class="invalid-feedback">
-                            {{ $message }}
+                <div class="card">
+                    <div class="card-body shadow">
+
+                        {{-- DESTINASI SELAMA TOUR --}}
+                        <div class="mt-5 mb-3">
+                            <h3 class=""><b>Informasi Destinasi</b></h3>
+                            <small>Masukkan informasi terkait destinasi selama tour</small>
                         </div>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label for="price" class="form-label">Harga</label>
-                    <input type="number" class="form-control @error('price') is-invalid @enderror" name="price"
-                        id="price" value="{{ old('price') }}" placeholder="300000">
-                    @error('price')
-                        <div class="invalid-feedback">
-                            {{ $message }}
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-sm btn-dark" id="tambahDestinasi">Tambah
+                                destinasi</button>
+                            <button type="button" class="btn btn-sm btn-danger" id="kurangDestinasi">Kurangi
+                                destinasi</button>
                         </div>
-                    @enderror
-                </div>
-                <div class="my-3">
-                    <label for="tour_guide_id" class="form-label">Tour Guide</label>
-                    <select class="form-select" aria-label="tour_guide_id" id="tour_guide_id" name="tour_guide_id">
-                        <option value="" selected disabled hidden>Pilih tour guide...</option>
-                        @foreach ($tourGuide as $tg)
-                            <option value="{{ $tg->tour_guide_id }}">{{ $tg->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="formFile" class="form-label">Gambar Tour</label>
-                    <img class="img-preview mb-3 d-block" style="max-width: 400px;max-height: 300px;object-fit: contain">
-                    <input class="form-control @error('image') is-invalid @enderror" name="image" type="file"
-                        id="image" onchange="previewImg()">
-                    @error('image')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label for="start_date" class="form-label">Tanggal Keberangkatan</label>
-                    <input type="date" class="form-control @error('start_date') is-invalid @enderror" name="start_date"
-                        id="start_date" value="{{ old('start_date') }}">
-                    @error('start_date')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label for="end_date" class="form-label">Tanggal Kembali</label>
-                    <input type="date" class="form-control @error('end_date') is-invalid @enderror" name="end_date"
-                        id="end_date" value="{{ old('end_date') }}">
-                    @error('end_date')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label for="description" class="form-label">Deskripsi</label>
-                    <input id="description" type="hidden" name="description">
-                    <trix-editor input="description"></trix-editor>
+                        <div id="destination-container" class="mb-3"></div>
+                        {{-- DESTINASI SELAMA TOUR END --}}
+                    </div>
                 </div>
 
-                {{-- MEETING POIN --}}
-                <div class="mt-5 mb-3">
-                    <h3 class=""><b>Informasi Meeting Point</b></h3>
-                    <small>Masukkan informasi terkait meeting poin</small>
-                </div>
-                <div class="mb-3">
-                    <button type="button" class="btn btn-sm btn-dark" id="tambahMeetPoint">Tambah meeting point</button>
-                    <button type="button" class="btn btn-sm btn-danger" id="kurangMeetPoint">Kurangi meeting
-                        point</button>
-                </div>
-                <div class="mb-3" id="meetingPoint-container"></div>
-                {{-- <div class="mb-3">
-                    <label for="meeting_point_name" class="form-label">Meeting Point</label>
-                    <input type="text" class="form-control @error('meeting_point_name') is-invalid @enderror"
-                        name="meeting_point_name" id="meeting_point_name" value="{{ old('meeting_point_name') }}">
-                    @error('meeting_point_name')
-                        <div class="invalid-feedback">
-                            {{ $message }}
+                <div class="card">
+                    <div class="card-body shadow">
+
+                        {{-- JADWAL --}}
+                        <div class="mt-5 mb-3">
+                            <h3 class=""><b>Informasi Jadwal</b></h3>
+                            <small>Masukkan informasi terkait jadwal/rundown tour</small>
                         </div>
-                    @enderror
-                </div> --}}
-                {{-- MEETING POINT END --}}
-
-                {{-- DESTINASI SELAMA TOUR --}}
-                <div class="mt-5 mb-3">
-                    <h3 class=""><b>Informasi Destinasi</b></h3>
-                    <small>Masukkan informasi terkait destinasi selama tour</small>
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-sm btn-dark" id="tambahJadwal">Tambah jadwal</button>
+                            <button type="button" class="btn btn-sm btn-danger" id="kurangJadwal">Kurangi
+                                jadwal</button>
+                        </div>
+                        <div class="mb-5" id="jadwal-container"></div>
+                        {{-- JADWAL END --}}
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <button type="button" class="btn btn-sm btn-dark" id="tambahDestinasi">Tambah destinasi</button>
-                    <button type="button" class="btn btn-sm btn-danger" id="kurangDestinasi">Kurangi destinasi</button>
-                </div>
-                <div id="destination-container" class="mb-3">
-                    {{-- <div class="mb-3">
-                        <label for="destination_name" class="form-label">Destinasi</label>
-                        <input type="text" class="form-control @error('destination_name') is-invalid @enderror"
-                            name="destination_name" id="destination_name" value="{{ old('destination_name') }}">
-                        @error('destination_name')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div> --}}
-                </div>
-                {{-- DESTINASI SELAMA TOUR END --}}
-
-                {{-- JADWAL --}}
-                <div class="mt-5 mb-3">
-                    <h3 class=""><b>Informasi Jadwal</b></h3>
-                    <small>Masukkan informasi terkait jadwal/rundown tour</small>
-                </div>
-                <div class="mb-3">
-                    <button type="button" class="btn btn-sm btn-dark" id="tambahJadwal">Tambah jadwal</button>
-                    <button type="button" class="btn btn-sm btn-danger" id="kurangJadwal">Kurangi jadwal</button>
-                </div>
-                <div class="mb-5" id="jadwal-container">
-                    {{-- <div class="mb-3">
-                        <label for="activity" class="form-label">Aktivitas dan Waktu</label>
-                        <input type="text" class="form-control mb-2 @error('activity') is-invalid @enderror"
-                            name="activity" id="activity" value="{{ old('activity') }}">
-                        @error('activity')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                        <input type="datetime-local" class="form-control @error('schedule_time') is-invalid @enderror"
-                            name="schedule_time" id="schedule_time" value="{{ old('schedule_time') }}">
-                        @error('schedule_time')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div> --}}
-                </div>
-                {{-- JADWAL END --}}
                 <br><br>
 
                 <div class="d-flex justify-content-end gap-2">
