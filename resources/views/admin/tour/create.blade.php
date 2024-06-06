@@ -122,7 +122,7 @@
                     <div class="card-body shadow">
 
                         {{-- MEETING POIN --}}
-                        <div class="mt-5 mb-3">
+                        <div class="mb-3">
                             <h3 class=""><b>Informasi Meeting Point</b></h3>
                             <small>Masukkan informasi terkait meeting poin</small>
                         </div>
@@ -141,7 +141,7 @@
                     <div class="card-body shadow">
 
                         {{-- DESTINASI SELAMA TOUR --}}
-                        <div class="mt-5 mb-3">
+                        <div class="mb-3">
                             <h3 class=""><b>Informasi Destinasi</b></h3>
                             <small>Masukkan informasi terkait destinasi selama tour</small>
                         </div>
@@ -160,7 +160,7 @@
                     <div class="card-body shadow">
 
                         {{-- JADWAL --}}
-                        <div class="mt-5 mb-3">
+                        <div class="mb-3">
                             <h3 class=""><b>Informasi Jadwal</b></h3>
                             <small>Masukkan informasi terkait jadwal/rundown tour</small>
                         </div>

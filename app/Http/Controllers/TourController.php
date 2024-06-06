@@ -59,38 +59,45 @@ class TourController extends Controller
                 'updated_at' => now(),
             ]);
 
-            foreach ($request->meeting_point_name as $mpn) {
-                DB::table('meeting_points')->insert([
-                    'meeting_point_id'=> Str::uuid()->toString(),
-                    'meeting_point_name'=> $mpn,
-                    'tour_id'=> $uuid,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
+            if ($request->meeting_point_name) {
+                foreach ($request->meeting_point_name as $mpn) {
+                    DB::table('meeting_points')->insert([
+                        'meeting_point_id'=> Str::uuid()->toString(),
+                        'meeting_point_name'=> $mpn,
+                        'tour_id'=> $uuid,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
             }
-            foreach ($request->destination_name as $dn) {
-                DB::table('destinations')->insert([
-                    'destination_id'=> Str::uuid()->toString(),
-                    'destination_name'=> $dn,
-                    'tour_id'=> $uuid,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
+
+            if ($request->destination_name) {
+                foreach ($request->destination_name as $dn) {
+                    DB::table('destinations')->insert([
+                        'destination_id'=> Str::uuid()->toString(),
+                        'destination_name'=> $dn,
+                        'tour_id'=> $uuid,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
             }
-            foreach ($request->activity as $key => $act) {
-                DB::table('tour_schedules')->insert([
-                    'tour_schedule_id'=> Str::uuid()->toString(),
-                    'activity'=> $act,
-                    'tour_id'=> $uuid,
-                    'schedule_time'=> $request->schedule_time[$key],
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
+
+            if ($request->activity) {
+                foreach ($request->activity as $key => $act) {
+                    DB::table('tour_schedules')->insert([
+                        'tour_schedule_id'=> Str::uuid()->toString(),
+                        'activity'=> $act,
+                        'tour_id'=> $uuid,
+                        'schedule_time'=> $request->schedule_time[$key],
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
             }
 
             return redirect()->route('tourPlan')->with('success','Rencana '.ucwords($request->title).' berhasil ditambahkan');
         } catch (\Throwable $th) {
-            dd($th);
             return redirect()->route('tourPlan')->with('error','Rencana '.ucwords($request->title).' gagal ditambahkan');
 
         }
