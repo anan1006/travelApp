@@ -1,4 +1,4 @@
-<x-guest-layout>
+{{-- <x-guest-layout>
     <img src="{{ asset('img/login/register.jpg') }}" class="w-full h-[300px] object-cover" alt="">
 
     <form method="POST" class="px-6 py-4" action="{{ route('register') }}">
@@ -60,4 +60,120 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-guest-layout> --}}
+
+@extends('auth.authLayout')
+
+@section('konten')
+    <div class="container">
+        <div class="row justify-content-center align-items-center" style="min-height: 100vh">
+            <div class="col-md-12 col-lg-10">
+                <div class="wrap d-md-flex">
+                    @if (session('status'))
+                        <div class="mb-4">
+                            {{ $status }}
+                        </div>
+                    @endif
+                    <div class="img" style="background-image: url({{ asset('img/login/register.jpg') }});">
+                    </div>
+                    <div class="login-wrap p-4 p-md-5">
+                        <div class="d-flex">
+                            <div class="w-100">
+                                <h3 class="mb-4">Register</h3>
+                            </div>
+                        </div>
+                        @if (session()->has('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>{{ session('success') }}</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
+                        <form action="{{ route('register') }}" method="post" class="signin-form">
+                            @csrf
+                            {{-- Name --}}
+                            <div class="form-group mb-3">
+                                <label class="label" for="name">Name</label>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                    id="name" name="name" placeholder="Name" value="{{ old('name') }}" required
+                                    autofocus autocomplete="name">
+                                @error('name')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            {{-- Username --}}
+                            <div class="form-group mb-3">
+                                <label class="label" for="username">Username</label>
+                                <input type="text" class="form-control @error('username') is-invalid @enderror"
+                                    id="username" name="username" placeholder="Username" value="{{ old('username') }}"
+                                    required autofocus autocomplete="username">
+                                @error('username')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            {{-- Email --}}
+                            <div class="form-group mb-3">
+                                <label class="label" for="email">Email</label>
+                                <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                    id="email" name="email" placeholder="E-mail" value="{{ old('email') }}" required
+                                    autocomplete="username">
+                                @error('email')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="password">Password</label>
+                                <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                    placeholder="Password" id="password" name="password" required
+                                    autocomplete="new-password">
+                                @error('password')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="password_confirmation">Confirm Password</label>
+                                <input type="password"
+                                    class="form-control @error('password_confirmation') is-invalid @enderror"
+                                    placeholder="Password" id="password_confirmation" name="password_confirmation" required
+                                    autocomplete="new-password">
+                                @error('password_confirmation')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <button type="submit"
+                                    class="form-control btn btn-primary rounded submit px-3">Register</button>
+                            </div>
+                            {{-- <div class="form-group d-md-flex">
+                            <div class="w-50 text-left">
+                                <label class="checkbox-wrap checkbox-primary mb-0">Remember Me
+                                    <input id="remember_me" type="checkbox" name="remember">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="w-50 text-md-right">
+                                @if (Route::has('password.request'))
+                                    <a class="" href="{{ route('password.request') }}">
+                                        Forgot your password?
+                                    </a>
+                                @endif
+                            </div>
+                        </div> --}}
+                        </form>
+                        <p class="text-center">Alrready registered? <a href="{{ route('login') }}">Login</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

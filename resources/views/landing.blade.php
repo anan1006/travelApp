@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sixtysix Journey</title>
-    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('img/logodark.png') }}" type="image/x-icon">
     {{-- Bootstrap CSS --}}
     <link rel="stylesheet" href="{{ asset('css\bootstrap.min.css') }}">
     {{-- AOS --}}
@@ -16,6 +16,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     {{-- My CSS --}}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <style>
+        .pages-link {
+            color: #fff;
+            transition: 0.3s
+        }
+
+        .pages-link:hover {
+            color: #b1b1b1
+        }
+    </style>
 
 </head>
 
@@ -116,7 +126,7 @@
         {{-- End Carousel --}}
 
         {{-- Desc --}}
-        <section>
+        <section id="desc" class="pt-5">
             <div class="container py-5">
                 <div class="d-flex align-items-center justify-content-between gap-2 gap-xl-5 flex-column flex-md-row">
                     <div class="col-md-5" data-aos="fade-right" data-aos-duration="1000">
@@ -147,7 +157,7 @@
         {{-- End Desc --}}
 
         {{-- Swipper --}}
-        <section>
+        <section id="discover" class="pt-5">
             <div class="container mt-5 pt-5">
                 <h1 class="section-title fw-semibold text-center mb-5" data-aos="fade-up" data-aos-duration="1000">
                     Discover the most <br />
@@ -177,7 +187,7 @@
         {{-- End Swipper --}}
 
         {{-- Experience --}}
-        <section>
+        <section id="exp" class="pt-5">
             <div class="container pt-5">
                 <h1 class="mt-5 section-title fw-semibold text-center" data-aos="fade-up" data-aos-duration="1000">
                     With
@@ -231,7 +241,7 @@
         {{-- End Experience --}}
 
         {{-- Journey Plan --}}
-        <section id="journey-plan">
+        <section id="journey-plan" class="pt-5">
             <div class="container  pt-5">
                 <h1 class="mt-5 section-title fw-semibold text-center" data-aos="fade-up" data-aos-duration="1000">
                     Let's
@@ -272,7 +282,7 @@
         {{-- End Journey Plan --}}
 
         {{-- Contact --}}
-        <section>
+        <section id="contact" class="pt-5">
             <div class="container px-4 py-5">
                 <h1 class="mt-5 section-title fw-semibold text-center" data-aos="fade-up" data-aos-duration="1000">
                     Or Plan your own trip <br>and Contact us</h1>
@@ -358,9 +368,64 @@
         {{-- End Contact --}}
 
     </main>
-    <footer style="background-color: #043442;height: 100px;margin-top: 300px" class="text-white">
-        <div class="container d-flex justify-content-center align-items-center">
-            <img src="{{ asset('img/logo.png') }}" width="100px" class="mt-4" alt="">
+    <footer style="background-color: #043442;height: fit-content;margin-top: 300px;padding: 50px 0"
+        class="text-white">
+        <div class="container d-flex flex-wrap gap-5">
+            <div class="logo">
+                <img src="{{ asset('img/logo.png') }}" width="100px" class="mt-4" alt="">
+            </div>
+            <div class="contact mt-4 ms-md-auto">
+                <h4 class="text-white mb-3">Contact Us</h4>
+                <p><i class="bi bi-telephone me-2"></i> Telp : 081123123123 <br>Senin - Minggu <br>24 Jam</p>
+                <p><i class="bi bi-geo-alt-fill me-2"></i>Jl. jalan ke Kota Jogja <br>No. 05 Dimana-mana hatiku senang
+                </p>
+                <p><i class="bi bi-envelope-at-fill me-2"></i>sistysixjourney@gmail.com
+                </p>
+            </div>
+            <div class="pages mt-4 mx-md-4">
+                <h4 class="text-white mb-3">Pages</h4>
+                <a class="text-decoration-none pages-link d-block" href="#desc">Description</a>
+                <a class="text-decoration-none pages-link d-block" href="#discover">Discover</a>
+                <a class="text-decoration-none pages-link d-block" href="#exp">Experience</a>
+                <a class="text-decoration-none pages-link d-block" href="#journey-plan">Plan</a>
+                <a class="text-decoration-none pages-link d-block" href="#contact">Contact</a>
+            </div>
+            <div class="about mt-4">
+                <h4 class="text-white mb-3">About</h4>
+                <div class="d-flex flex-column" style="max-width: 300px">
+                    <p style="text-align: justify">Welcome to SixtysixJourney, your trusted partner in creating
+                        unforgettable travel
+                        experiences. We offer personalized itineraries, seamless booking, and 24/7 support to ensure
+                        your journey is smooth and memorable. Discover the world with us!</p>
+                    <div class="sosial-media d-flex mt-3 gap-3 fs-6">
+                        <a href="https://youtube.com" target="blank">
+                            <div class="border border-2 rounded-circle d-flex justify-content-center align-items-center"
+                                style="width: 35px;height: 35px;">
+                                <i class="bi bi-youtube" style="color: #fff"></i>
+                            </div>
+                        </a>
+                        <a href="https://instagram.com" target="blank">
+                            <div class="border border-2 rounded-circle d-flex justify-content-center align-items-center"
+                                style="width: 35px;height: 35px;">
+                                <i class="bi bi-instagram" style="color: #fff"></i>
+                            </div>
+                        </a>
+                        <a href="https://twitter.com" target="blank">
+                            <div class="border border-2 rounded-circle d-flex justify-content-center align-items-center"
+                                style="width: 35px;height: 35px;">
+                                <i class="bi bi-twitter-x" style="color: #fff"></i>
+                            </div>
+                        </a>
+                        <a href="https://tiktok.com" target="blank">
+                            <div class="border border-2 rounded-circle d-flex justify-content-center align-items-center"
+                                style="width: 35px;height: 35px;">
+                                <i class="bi bi-tiktok" style="color: #fff"></i>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 
