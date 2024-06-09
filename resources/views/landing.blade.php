@@ -18,12 +18,12 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <style>
         .pages-link {
-            color: #fff;
+            color: #cacaca;
             transition: 0.3s
         }
 
         .pages-link:hover {
-            color: #b1b1b1
+            color: #fff
         }
     </style>
 
@@ -375,25 +375,28 @@
                 <img src="{{ asset('img/logo.png') }}" width="100px" class="mt-4" alt="">
             </div>
             <div class="contact mt-4 ms-md-auto">
-                <h4 class="text-white mb-3">Contact Us</h4>
-                <p><i class="bi bi-telephone me-2"></i> Telp : 081123123123 <br>Senin - Minggu <br>24 Jam</p>
-                <p><i class="bi bi-geo-alt-fill me-2"></i>Jl. jalan ke Kota Jogja <br>No. 05 Dimana-mana hatiku senang
+                <h4 class="text-white mb-5">Contact Us</h4>
+                <p style="color: #cacaca"><i class="bi bi-telephone me-2"></i> Telp : 081123123123 <br>Senin - Minggu
+                    <br>24 Jam
                 </p>
-                <p><i class="bi bi-envelope-at-fill me-2"></i>sistysixjourney@gmail.com
+                <p style="color: #cacaca"><i class="bi bi-geo-alt-fill me-2"></i>Jl. jalan ke Kota Jogja <br>No. 05
+                    Dimana-mana hatiku senang
+                </p>
+                <p style="color: #cacaca"><i class="bi bi-envelope-at-fill me-2"></i>sistysixjourney@gmail.com
                 </p>
             </div>
             <div class="pages mt-4 mx-md-4">
-                <h4 class="text-white mb-3">Pages</h4>
-                <a class="text-decoration-none pages-link d-block" href="#desc">Description</a>
-                <a class="text-decoration-none pages-link d-block" href="#discover">Discover</a>
-                <a class="text-decoration-none pages-link d-block" href="#exp">Experience</a>
-                <a class="text-decoration-none pages-link d-block" href="#journey-plan">Plan</a>
-                <a class="text-decoration-none pages-link d-block" href="#contact">Contact</a>
+                <h4 class="text-white mb-5">Pages</h4>
+                <a class="text-decoration-none pages-link d-block mt-2" href="#desc">Description</a>
+                <a class="text-decoration-none pages-link d-block mt-2" href="#discover">Discover</a>
+                <a class="text-decoration-none pages-link d-block mt-2" href="#exp">Experience</a>
+                <a class="text-decoration-none pages-link d-block mt-2" href="#journey-plan">Plan</a>
+                <a class="text-decoration-none pages-link d-block mt-2" href="#contact">Contact</a>
             </div>
             <div class="about mt-4">
-                <h4 class="text-white mb-3">About</h4>
-                <div class="d-flex flex-column" style="max-width: 300px">
-                    <p style="text-align: justify">Welcome to SixtysixJourney, your trusted partner in creating
+                <h4 class="text-white mb-5">About</h4>
+                <div class="d-flex flex-column" style="max-width: 400px">
+                    <p style="color: #cacaca">Welcome to SixtysixJourney, your trusted partner in creating
                         unforgettable travel
                         experiences. We offer personalized itineraries, seamless booking, and 24/7 support to ensure
                         your journey is smooth and memorable. Discover the world with us!</p>
@@ -401,25 +404,25 @@
                         <a href="https://youtube.com" target="blank">
                             <div class="border border-2 rounded-circle d-flex justify-content-center align-items-center"
                                 style="width: 35px;height: 35px;">
-                                <i class="bi bi-youtube" style="color: #fff"></i>
+                                <i class="bi bi-youtube" style="color: #cacaca"></i>
                             </div>
                         </a>
                         <a href="https://instagram.com" target="blank">
                             <div class="border border-2 rounded-circle d-flex justify-content-center align-items-center"
                                 style="width: 35px;height: 35px;">
-                                <i class="bi bi-instagram" style="color: #fff"></i>
+                                <i class="bi bi-instagram" style="color: #cacaca"></i>
                             </div>
                         </a>
                         <a href="https://twitter.com" target="blank">
                             <div class="border border-2 rounded-circle d-flex justify-content-center align-items-center"
                                 style="width: 35px;height: 35px;">
-                                <i class="bi bi-twitter-x" style="color: #fff"></i>
+                                <i class="bi bi-twitter-x" style="color: #cacaca"></i>
                             </div>
                         </a>
                         <a href="https://tiktok.com" target="blank">
                             <div class="border border-2 rounded-circle d-flex justify-content-center align-items-center"
                                 style="width: 35px;height: 35px;">
-                                <i class="bi bi-tiktok" style="color: #fff"></i>
+                                <i class="bi bi-tiktok" style="color: #cacaca"></i>
                             </div>
                         </a>
 

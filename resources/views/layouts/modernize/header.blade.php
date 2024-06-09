@@ -27,7 +27,7 @@
 
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link nav-icon-hover p-5" href="javascript:void(0)" id="drop2"
+                    <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="{{ asset('modernize/assets/images/profile/user-1.jpg') }}" alt=""
                             width="50" height="50" class="rounded-circle">
