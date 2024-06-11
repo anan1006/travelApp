@@ -18,7 +18,7 @@
                                 <img src="{{ asset('storage/' . $listTour->banner_path) }}" class="rounded-top daftarTour"
                                     style="max-height: 300px; object-fit: cover;" alt="">
                                 <div class="card-body">
-                                    <h3>{{ $listTour->title }}</h3>
+                                    <h3 class="text-capitalize">{{ $listTour->title }}</h3>
                                     {{-- <p class="card-text">{{ $listTour->description }}</p> --}}
                                     <div>
                                         <table>
