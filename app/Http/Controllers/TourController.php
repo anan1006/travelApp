@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Tour;
+use App\Models\Order;
 use App\Models\TourGuide;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use App\DataTables\TourDataTable;
 use App\Models\Destination;
+use Illuminate\Support\Str;
 use App\Models\MeetingPoint;
 use App\Models\TourSchedule;
+use Illuminate\Http\Request;
+use App\DataTables\TourDataTable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -109,7 +110,13 @@ class TourController extends Controller
         $meetingPoint = MeetingPoint::where("tour_id",$plan->tour_id)->get();
         $destination = Destination::where("tour_id",$plan->tour_id)->get();
         $schedule = TourSchedule::where("tour_id",$plan->tour_id)->orderBy("schedule_time",'asc')->get();
-        return view('admin.tour.show', compact('plan','meetingPoint','destination','schedule'));
+        $orders = Order::where("tour_id",$plan->tour_id)->with("user")->get();
+        $groupedOrders = $orders->groupBy(function ($order) {
+            return $order->user->name;
+        });
+        $totalOrder = $orders->where("status","disetujui")->count();
+        // dd($groupedOrders);
+        return view('admin.tour.show', compact('plan','meetingPoint','destination','schedule','orders',"groupedOrders","totalOrder"));
     }
 
     public function rencanaTourList(){
@@ -236,6 +243,55 @@ class TourController extends Controller
         }
     }
 
+    // ====================================================================================================================================
+    // DAFTAR TOUR
+    public function daftar(Tour $plan){
+        return view("admin.daftarTour.daftarTourUser",compact("plan"));
+    }
+    public function daftarPost(Request $request){
+        // dd(auth()->user()->id);
+        $request->validate([
+            "nama_peserta.*" => "required|string|max:255",
+            "telepon_peserta.*" => "required|numeric|digits_between:10,15",
+            "bukti_bayar" => "required|image|file|max:3072",
+        ],[
+            'nama_peserta.*.required' => 'Nama peserta harus diisi.',
+            'nama_peserta.*.string' => 'Nama peserta harus berupa teks.',
+            'nama_peserta.*.max' => 'Nama peserta tidak boleh lebih dari 255 karakter.',
+            'telepon_peserta.*.required' => 'Nomor telepon peserta harus diisi.',
+            'telepon_peserta.*.numeric' => 'Nomor telepon peserta harus berupa angka.',
+            'telepon_peserta.*.digits_between' => 'Nomor telepon peserta harus antara 10 hingga 15 digit.',
+            'bukti_bayar.required' => 'Bukti pembayaran harus diunggah.',
+            'bukti_bayar.image' => 'Bukti pembayaran harus berupa gambar.',
+            'bukti_bayar.file' => 'Bukti pembayaran harus berupa file.',
+            'bukti_bayar.max' => 'Ukuran bukti pembayaran tidak boleh lebih dari 3 MB.',
+        ]);
+
+        try {
+            $buktiBayar = $request->file('bukti_bayar')->store('buktiBayar');
+
+            foreach ($request->nama_peserta as $key => $nama) {
+                DB::table("orders")->insert([
+                    "order_id" => Str::uuid(),
+                    "user_id" => auth()->user()->id,
+                    "tour_id" => $request->tour_id,
+                    "nama_peserta" => $nama,
+                    "nomor_telepon" => $request->telepon_peserta[$key],
+                    "bukti_bayar" => $buktiBayar,
+                    "booking_date" => now(),
+                    "status" => "Menunggu konfirmasi",
+                    "created_at" => now(),
+                    "updated_at" => now(),
+
+                ]);
+            }
+            return redirect()->route("rencanaTourList")->with('success',"Berhasil Pesan");
+        } catch (\Throwable $th) {
+            dd($th);
+            return redirect()->route("rencanaTourList")->with('error',"Gagal Pesan");
+        }
+
+    }
 
 
 

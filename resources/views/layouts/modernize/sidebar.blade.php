@@ -70,11 +70,11 @@
                     </a>
                 </li>
                 {{-- User Menu --}}
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">Users</span>
+                </li>
                 @if (!auth()->user()->hasRole('user'))
-                    <li class="nav-small-cap">
-                        <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                        <span class="hide-menu">Users</span>
-                    </li>
                     <li class="sidebar-item">
                         <a class="sidebar-link {{ Request::is('user-list/*') ? 'active' : '' }}"
                             href="{{ route('userList') }}" aria-expanded="false">
@@ -85,6 +85,15 @@
                         </a>
                     </li>
                 @endif
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ Request::is('order/*') ? 'active' : '' }}" href="{{ route('order') }}"
+                        aria-expanded="false">
+                        <span>
+                            <i class="ti ti-credit-card"></i>
+                        </span>
+                        <span class="hide-menu">Order</span>
+                    </a>
+                </li>
 
             </ul>
 

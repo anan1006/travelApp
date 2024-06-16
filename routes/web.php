@@ -7,6 +7,7 @@ use App\Http\Controllers\TourController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DiscoverController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,7 @@ Route::get('/', function () {
     $discovers = Discover::all();
     $tours = Tour::all();
     return view('landing',compact('discovers','tours'));
-});
+})->name('landingPage');
 
 // Tour
 Route::middleware(['auth', 'verified','role:superadmin|admin'])->group(function(){
@@ -81,7 +82,15 @@ Route::middleware(['auth', 'verified','role:superadmin|admin|user'])->group(func
 
     Route::get('/rencana-tour/detil/{plan}', [TourController::class, 'show'])->name('showPlan');
 
+    Route::get("/order",[OrderController::class,"index"])->name("order");
+    Route::get("/order/showOrder/{plan}",[OrderController::class,"showOrder"])->name("showOrder");
 
+
+    // USER DAFTAR TOUR
+    Route::get('/daftar/{plan}',[TourController::class,"daftar"])->name("userDaftar");
+    Route::post('/daftar',[TourController::class,"daftarPost"])->name("userDaftarPost");
+    Route::get('/setujui/{user}/{tour}',[OrderController::class,"setujui"])->name("setujui");
+    Route::get('/tolak/{user}/{tour}',[OrderController::class,"tolak"])->name("tolak");
 });
 
 

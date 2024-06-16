@@ -38,4 +38,7 @@ class Tour extends Model
     public function review(){
         return $this->hasMany(Review::class,'tour_id');
     }
+    public function order(){
+        return $this->hasMany(Order::class,'tour_id');
+    }
 }

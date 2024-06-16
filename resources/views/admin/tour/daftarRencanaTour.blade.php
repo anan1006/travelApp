@@ -43,11 +43,13 @@
                                     <div class="d-flex justify-content-between align-items-center mt-3">
                                         <div class="btn-group">
                                             <a href="{{ route('showPlan', $listTour->tour_id) }}"
-                                                class="btn btn-sm btn-outline-secondary">Lihat
+                                                class="btn btn-sm btn-outline-primary">Lihat
                                                 Detail</a>
                                             {{-- <button type="button" class="btn btn-sm btn-outline-secondary">Lihat
                                                 Detail</button> --}}
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Daftar</button>
+                                            <a href="{{ route('userDaftar', $listTour->tour_id) }}"
+                                                class="btn btn-sm btn-outline-primary">Daftar</a>
+                                            {{-- <button type="button" class="btn btn-sm btn-outline-secondary">Daftar</button> --}}
                                         </div>
                                         <small class="text-body-secondary"><i class="bi bi-person-lines-fill"></i>
                                             {{ $listTour->max_participant }}</small>

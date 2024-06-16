@@ -15,6 +15,9 @@ return new class extends Migration
             $table->uuid("order_id")->primary();
             $table->foreignUuid("user_id")->constrained("users");
             $table->foreignUuid("tour_id")->constrained("tours")->references("tour_id");
+            $table->string("nama_peserta");
+            $table->string("nomor_telepon");
+            $table->text("bukti_bayar");
             $table->dateTime("booking_date");
             $table->string("status");
             $table->timestamps();
